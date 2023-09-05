@@ -20,7 +20,7 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     color: var(--color-text-secondary);
-    background: linear-gradient(to top left, #d8078e, #fc7802, var(--color-secondary));
+    background: linear-gradient(-45deg, #d8078e, #fc7802, var(--color-secondary));
     background-repeat: no-repeat;
     background-size: cover;
     max-height: 100vh;
@@ -78,7 +78,6 @@ header h3::first-letter{
     color: var(--color-primary);
     font-family: 'Poppins', sans-serif;
 }
-
 .search-component button{
     padding: 1rem;
     background-color: var(--color-primary);
@@ -92,7 +91,7 @@ header h3::first-letter{
 main{
     display: flex;
     justify-content: space-around;
-    height: calc(100vh - 8.48rem);
+    height: calc(100vh - 8.28rem);
 }
 main aside{
     width: 40%;
@@ -143,7 +142,7 @@ aside > div::-webkit-scrollbar-thumb
 }
 .booksList ul li .book-cover{
     width: 10rem;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 .booksList ul li .book-cover img{
     display: block;
@@ -163,4 +162,7 @@ aside > div::-webkit-scrollbar-thumb
 .book-details-footer{
     margin-top: 1.5rem;
     padding: 1rem 0;
+}
+.book-details-footer p:last-child{
+    text-transform: capitalize;
 }
