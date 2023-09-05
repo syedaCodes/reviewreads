@@ -1,0 +1,85 @@
+:root{
+    --color-primary: #ffffff;
+    --color-tertiary: #f2f2f2;
+    --color-secondary: #0251fc;
+    --color-text-primary: #2a2a3c;
+    --color-text-secondary: #e7e7e7;
+    --color-text-tertiary: #8a8a8a;
+}
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+}
+.row-flex-center{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn{
+    border: none;
+    cursor: pointer;
+}
+header,
+main{
+    padding: 1.5rem 5rem;
+}
+header{
+    width: 100%;
+}
+header h3{
+    font-size: 2rem;
+    font-weight: 600;
+}
+header h3::first-letter{
+    font-size: 3rem;
+}
+.search-component{
+    border: 1px solid var(--color-text-secondary);
+    background-color: var(--color-tertiary);
+    border-radius: 5rem;
+    padding: .2rem;
+}
+.search-component input{
+    border: none;
+    outline: none;
+    padding: 1rem;
+    width: 40rem;
+    background-color: transparent;
+}
+.search-component button{
+    padding: 1rem;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+}
+.total-results{
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--color-tertiary);
+}
+main{
+    display: flex;
+    justify-content: space-around;
+}
+main aside{
+    width: 40%;
+}
+main > div,
+main aside{
+    height: 85vh;
+    border-radius: 1rem;
+}
+main > div{
+    width: 57%;
+}
