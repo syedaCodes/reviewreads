@@ -1,9 +1,12 @@
-const Dashboard = () => {
+import ReviewContainer from "./ReviewContainer";
+import Sidebar from "./Sidebar";
+
+const Dashboard = ({ data }) => {
     return (
-        <main>
-            <aside></aside>
-            <div></div>
-        </main>
+        <>
+            <Sidebar data={data} />
+            <ReviewContainer />
+        </>
     );
 };
 
