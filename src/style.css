@@ -166,3 +166,8 @@ aside > div::-webkit-scrollbar-thumb
 .book-details-footer p:last-child{
     text-transform: capitalize;
 }
+@media only screen and (max-width: 56.25em){
+    html{
+        font-size: 50%;
+    }
+}

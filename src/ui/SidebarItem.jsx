@@ -1,8 +1,8 @@
 import ItemDetails from "./ItemDetails";
 
-const SidebarItem = ({ book }) => {
+const SidebarItem = ({ book, onSelectBook }) => {
     return (
-        <li>
+        <li onClick={() => onSelectBook(book.key)}>
             <div className="book-cover">
                 <img
                     src={`https://covers.openlibrary.org/b/id/${book?.cover_i}-M.jpg`}

@@ -1,12 +1,16 @@
 import SidebarItem from "./SidebarItem";
 
-const Sidebar = ({ data }) => {
+const Sidebar = ({ data, onSelectBook }) => {
     return (
         <aside>
             <div className="booksList">
                 <ul>
                     {data?.map((book) => (
-                        <SidebarItem book={book} key={book.key} />
+                        <SidebarItem
+                            book={book}
+                            key={book.key}
+                            onSelectBook={onSelectBook}
+                        />
                     ))}
                 </ul>
             </div>
