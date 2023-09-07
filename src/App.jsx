@@ -1,27 +1,33 @@
 import { useState } from "react";
 import Dashboard from "./ui/Dashboard";
 import Header from "./ui/Header";
+import { getBooks } from "./services/api";
 
 const App = () => {
     const [booksData, setBooksData] = useState([]);
-    // const [selectedBookId, setSelectedBookId] = useState(null);
     const [bookSelected, setBookSelected] = useState({});
 
-    const handleSearch = (data) => {
+    const cleanData = () => {
+        setBooksData("");
+        setBookSelected({});
+    };
+
+    const handleSubmit = async (search) => {
+        cleanData();
+        const query = search.replace(" ", "+");
+        const data = await getBooks(query);
+        if (!data) return;
         setBooksData(data);
+        console.log(data);
     };
 
     const handleSelectedBook = (key) => {
-        // setSelectedBookId((selectedBookId) =>
-        //     key === selectedBookId ? null : key
-        // );
-
         setBookSelected(() => booksData?.find((book) => book.key === key));
     };
 
     return (
         <div>
-            <Header onSearch={handleSearch} results={booksData?.length} />
+            <Header handleSubmit={handleSubmit} results={booksData?.length} />
             <main>
                 {booksData?.length ? (
                     <Dashboard

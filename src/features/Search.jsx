@@ -1,21 +1,16 @@
 import { useState } from "react";
-import { getBooks } from "../services/api";
 
-const Search = ({ onSearch }) => {
+const Search = ({ handleSubmit }) => {
     //create local state first - lift state up when needed
     const [search, setSearch] = useState("");
 
-    const handleSubmit = async (e) => {
+    const onFormSubmit = (e) => {
         e.preventDefault();
-        const query = search.replace(" ", "+");
-        const data = await getBooks(query);
-        if (!data) return;
-        onSearch(data);
-        console.log(data);
+        handleSubmit(search);
     };
 
     return (
-        <form className="search-component" onSubmit={handleSubmit}>
+        <form className="search-component" onSubmit={onFormSubmit}>
             <input
                 type="text"
                 placeholder="Search by Book Name"

@@ -163,8 +163,56 @@ aside > div::-webkit-scrollbar-thumb
     margin-top: 1.5rem;
     padding: 1rem 0;
 }
-.book-details-footer p:last-child{
+.book-details-footer p:last-child,
+.details-meta p:last-child{
     text-transform: capitalize;
+}
+.view{
+    height: 75vh;
+    background: rgba(42, 42, 60, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 2rem;
+    border-radius: .5rem;
+}
+.view-head{
+    display: flex;
+}
+.view-img{
+    margin-right: 1.5rem;
+}
+.view-book-details{
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.view-body p{
+    padding: 1rem 0;
+    max-height: 9.5rem;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
+.view-book-details h4{
+    color: var(--color-primary);
+    font-size: 1.8rem;
+}
+.view-book-details h5{
+    font-size: 1.4rem;
+    padding: .5rem 0;
+    font-weight: 400;
+}
+.view-body h4{
+    font-weight: 600;
+}
+.view-body{
+    padding: 1rem;
+}
+.details-meta{
+    margin-top: auto;
+    padding: 2rem 0;
 }
 @media only screen and (max-width: 56.25em){
     html{
