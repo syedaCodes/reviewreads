@@ -6,7 +6,7 @@ const ViewBookDetails = ({ title, author, publishDate, language }) => {
             <div className="details-meta">
                 {publishDate && (
                     <p>
-                        📆 Published on{" "}
+                        📆 Published:{" "}
                         {Array.isArray(publishDate)
                             ? publishDate[0]
                             : publishDate}

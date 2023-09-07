@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "./Button";
 import ViewBooks from "./ViewBooks";
+import ReviewTabs from "./ReviewTabs";
 
 const ReviewContainer = ({ selectedBook }) => {
     const [isVisited, setIsVisited] = useState(false);
@@ -9,22 +9,7 @@ const ReviewContainer = ({ selectedBook }) => {
 
     return (
         <div className="review-container">
-            <div className="review-tabs">
-                <Button
-                    nameClass={isVisited ? "btn-primary" : "active btn-primary"}
-                    handleClick={handleVisit}
-                >
-                    Book view
-                </Button>
-                <Button
-                    nameClass={
-                        !isVisited ? "btn-primary" : "active btn-primary"
-                    }
-                    handleClick={handleVisit}
-                >
-                    Books you`ve reviewed
-                </Button>
-            </div>
+            <ReviewTabs onVisit={handleVisit} isVisited={isVisited} />
             {!isVisited && Object.keys(selectedBook).length > 0 && (
                 <ViewBooks selectedBook={selectedBook} />
             )}

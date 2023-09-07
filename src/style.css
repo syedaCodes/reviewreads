@@ -90,6 +90,7 @@ header h3::first-letter{
     letter-spacing: .5px;
     font-family: 'Poppins', sans-serif;
 }
+.view-footer button,
 .btn-primary.active{
     color: var(--color-text-primary);
     background-color: var(--color-primary);
@@ -235,10 +236,10 @@ aside > div::-webkit-scrollbar-thumb
     padding: 1rem;
 }
 .details-meta{
-    margin-top: auto;
-    padding: 2rem 0;
+    margin-top: 1rem;
+    padding: 1rem 0;
 }
-.review-stars{
+.view-footer{
     position: absolute;
     bottom: 0%;
     right: 0%;
@@ -248,17 +249,19 @@ aside > div::-webkit-scrollbar-thumb
     border-radius: .5rem;
     display: flex;
     justify-content: center;
-    flex-direction: row-reverse;
     align-items: center;
 }
-.review-stars button{
-    margin-right: 1rem;
+.view-footer button{
+    margin-left: 1rem;
+}
+.review-stars{
+    display: flex;
+    flex-direction: row-reverse;
 }
 .review-stars span{
     font-size: 2rem;
     margin-right: .5rem;
     cursor: pointer;
-    display: flex;
 }
 .review-stars span:hover,
 .review-stars span:hover ~ span{

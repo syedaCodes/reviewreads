@@ -1,5 +1,3 @@
-import Button from "./Button";
-
 const ReviewStars = () => {
     return (
         <div className="review-stars">
@@ -8,8 +6,6 @@ const ReviewStars = () => {
             <span>&#9733;</span>
             <span>&#9733;</span>
             <span>&#9733;</span>
-
-            <Button nameClass={"btn-primary"}>Add to list</Button>
         </div>
     );
 };

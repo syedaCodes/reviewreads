@@ -1,5 +1,5 @@
-import ReviewStars from "./ReviewStars";
 import ViewBookDetails from "./ViewBookDetails";
+import ViewBookFooter from "./ViewBookFooter";
 
 const ViewBooks = ({ selectedBook }) => {
     return (
@@ -26,7 +26,7 @@ const ViewBooks = ({ selectedBook }) => {
                     </>
                 ) : null}
             </div>
-            <ReviewStars />
+            <ViewBookFooter />
         </div>
     );
 };
