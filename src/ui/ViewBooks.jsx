@@ -1,3 +1,4 @@
+import ReviewStars from "./ReviewStars";
 import ViewBookDetails from "./ViewBookDetails";
 
 const ViewBooks = ({ selectedBook }) => {
@@ -18,15 +19,14 @@ const ViewBooks = ({ selectedBook }) => {
                 />
             </div>
             <div className="view-body">
-                <div className="">
-                    {selectedBook.first_sentence ? (
-                        <>
-                            <h4>Opening line:</h4>
-                            <p>{selectedBook?.first_sentence[0]}</p>
-                        </>
-                    ) : null}
-                </div>
+                {selectedBook.first_sentence ? (
+                    <>
+                        <h4>Opening line:</h4>
+                        <p>{selectedBook?.first_sentence[0]}</p>
+                    </>
+                ) : null}
             </div>
+            <ReviewStars />
         </div>
     );
 };

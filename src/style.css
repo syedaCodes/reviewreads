@@ -78,8 +78,27 @@ header h3::first-letter{
     color: var(--color-primary);
     font-family: 'Poppins', sans-serif;
 }
+.btn-primary{
+    background: rgba(42, 42, 60, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--color-primary);
+    padding: 1.1rem;
+    border-radius: 5rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: .5px;
+    font-family: 'Poppins', sans-serif;
+}
+.btn-primary.active{
+    color: var(--color-text-primary);
+    background-color: var(--color-primary);
+}
+.review-tabs .btn-primary:last-child{
+    margin-left: 1rem;
+}
 .search-component button{
-    padding: 1rem;
+    padding: 1.1rem;
     background-color: var(--color-primary);
     border-radius: 50%;
 }
@@ -91,7 +110,7 @@ header h3::first-letter{
 main{
     display: flex;
     justify-content: space-around;
-    height: calc(100vh - 8.28rem);
+    height: calc(100vh - 8.5rem);
 }
 main aside{
     width: 40%;
@@ -167,13 +186,18 @@ aside > div::-webkit-scrollbar-thumb
 .details-meta p:last-child{
     text-transform: capitalize;
 }
+.review-tabs{
+    margin: 1rem 0;
+    padding: 0 1rem;
+}
 .view{
-    height: 75vh;
+    height: 70vh;
     background: rgba(42, 42, 60, 0.25);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     padding: 2rem;
     border-radius: .5rem;
+    position: relative;
 }
 .view-head{
     display: flex;
@@ -213,6 +237,32 @@ aside > div::-webkit-scrollbar-thumb
 .details-meta{
     margin-top: auto;
     padding: 2rem 0;
+}
+.review-stars{
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(42, 42, 60, 0.25);
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.review-stars button{
+    margin-right: 1rem;
+}
+.review-stars span{
+    font-size: 2rem;
+    margin-right: .5rem;
+    cursor: pointer;
+    display: flex;
+}
+.review-stars span:hover,
+.review-stars span:hover ~ span{
+    color: #ffd900;
 }
 @media only screen and (max-width: 56.25em){
     html{
