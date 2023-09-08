@@ -1,9 +1,9 @@
 import ViewBookDetails from "./ViewBookDetails";
 import ViewBookFooter from "./ViewBookFooter";
 
-const ViewBooks = ({ selectedBook }) => {
+const ViewBook = ({ selectedBook }) => {
     return (
-        <div className="view">
+        <>
             <div className="view-head">
                 <div className="view-img">
                     <img
@@ -27,8 +27,8 @@ const ViewBooks = ({ selectedBook }) => {
                 ) : null}
             </div>
             <ViewBookFooter />
-        </div>
+        </>
     );
 };
 
-export default ViewBooks;
+export default ViewBook;

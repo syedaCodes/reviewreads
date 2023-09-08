@@ -1,5 +1,5 @@
-import Button from "./Button";
-import ReviewStars from "./ReviewStars";
+import Button from "../Button";
+import ReviewStars from "../ReviewStars";
 
 const ViewBookFooter = () => {
     return (

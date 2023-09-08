@@ -2,6 +2,10 @@ import { useState } from "react";
 import Dashboard from "./ui/Dashboard";
 import Header from "./ui/Header";
 import { getBooks } from "./services/api";
+import Sidebar from "./ui/Sidebar";
+import ReviewContainer from "./ui/ReviewContainer";
+import Search from "./features/Search";
+import ResultsCount from "./ui/ResultsCount";
 
 const App = () => {
     const [booksData, setBooksData] = useState([]);
@@ -27,14 +31,19 @@ const App = () => {
 
     return (
         <div>
-            <Header handleSubmit={handleSubmit} results={booksData?.length} />
+            <Header>
+                <Search handleSubmit={handleSubmit} />
+                <ResultsCount results={booksData?.length} />
+            </Header>
             <main>
                 {booksData?.length ? (
-                    <Dashboard
-                        data={booksData}
-                        onSelectBook={handleSelectedBook}
-                        selectedBook={bookSelected}
-                    />
+                    <Dashboard>
+                        <Sidebar
+                            data={booksData}
+                            onSelectBook={handleSelectedBook}
+                        />
+                        <ReviewContainer selectedBook={bookSelected} />
+                    </Dashboard>
                 ) : null}
             </main>
         </div>

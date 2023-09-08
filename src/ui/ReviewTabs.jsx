@@ -13,7 +13,7 @@ const ReviewTabs = ({ onVisit, isVisited }) => {
                 nameClass={!isVisited ? "btn-primary" : "active btn-primary"}
                 handleClick={onVisit}
             >
-                Books you`ve reviewed
+                Books Reviewed
             </Button>
         </div>
     );
