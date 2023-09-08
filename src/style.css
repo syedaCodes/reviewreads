@@ -248,24 +248,37 @@ aside > div::-webkit-scrollbar-thumb
     background-color: rgba(42, 42, 60, 0.25);
     border-radius: .5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 .view-footer button{
-    margin-left: 1rem;
+    margin-right: 1rem;
 }
 .review-stars{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 20rem;
+}
+.stars{
+    display: flex;
     flex-direction: row-reverse;
 }
-.review-stars span{
-    font-size: 2rem;
+.stars span{
+    font-size: 2.5rem;
     margin-right: .5rem;
     cursor: pointer;
 }
-.review-stars span:hover,
-.review-stars span:hover ~ span{
-    color: #ffd900;
+.review-stars p{
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+.review-stars p,
+.stars span:hover,
+.stars span:hover ~ span,
+.stars span.active{
+    color: gold;
 }
 @media only screen and (max-width: 56.25em){
     html{

@@ -1,11 +1,11 @@
 import Button from "../Button";
-import ReviewStars from "../ReviewStars";
+import ReviewStars from "../../features/StarRatings";
 
 const ViewBookFooter = () => {
     return (
         <div className="view-footer">
-            <ReviewStars />
             <Button nameClass={"btn-primary"}>Add to list</Button>
+            <ReviewStars />
         </div>
     );
 };
