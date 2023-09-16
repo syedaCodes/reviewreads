@@ -6,23 +6,36 @@ import Sidebar from "./ui/Sidebar";
 import ReviewContainer from "./ui/ReviewContainer";
 import Search from "./features/Search";
 import ResultsCount from "./ui/ResultsCount";
+import LoaderText from "./ui/LoaderText";
+import ErrorMessage from "./ui/ErrorMessage";
 
 const App = () => {
     const [booksData, setBooksData] = useState([]);
     const [bookSelected, setBookSelected] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const cleanData = () => {
-        setBooksData("");
+        setBooksData([]);
         setBookSelected({});
+        setError("");
     };
 
     const handleSubmit = async (search) => {
         cleanData();
         const query = search.replace(" ", "+");
-        const data = await getBooks(query);
-        if (!data) return;
-        setBooksData(data);
-        console.log(data);
+        const res = await getBooks(query);
+        setIsLoading(true);
+
+        if (!res.docs || res.error) {
+            setError(res.error);
+        }
+
+        if (res.docs) {
+            setBooksData((data) => [...res.docs, data]);
+        }
+
+        setIsLoading(false);
     };
 
     const handleSelectedBook = (key) => {
@@ -35,17 +48,23 @@ const App = () => {
                 <Search handleSubmit={handleSubmit} />
                 <ResultsCount results={booksData?.length} />
             </Header>
-            <main>
-                {booksData?.length ? (
-                    <Dashboard>
+            <Dashboard>
+                {!isLoading && booksData.length > 0 && !error && (
+                    <>
                         <Sidebar
                             data={booksData}
                             onSelectBook={handleSelectedBook}
                         />
-                        <ReviewContainer selectedBook={bookSelected} />
-                    </Dashboard>
-                ) : null}
-            </main>
+                        {Object.keys(bookSelected).length > 0 && (
+                            <ReviewContainer selectedBook={bookSelected} />
+                        )}
+                    </>
+                )}
+
+                {isLoading && !error && <LoaderText>Loading...</LoaderText>}
+
+                {error ? <ErrorMessage>{error}</ErrorMessage> : null}
+            </Dashboard>
         </div>
     );
 };

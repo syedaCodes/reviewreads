@@ -3,6 +3,14 @@ import { useState } from "react";
 const StarRatings = ({ maxRating = 5 }) => {
     const [rating, setRating] = useState(0);
 
+    const getRatingQuote = new Map([
+        [1, "Awful"],
+        [2, "Not Good"],
+        [3, "Good"],
+        [4, "Impressive"],
+        [5, "Masterpiece"],
+    ]);
+
     const handleClick = (rating) => {
         setRating(rating);
     };
@@ -20,7 +28,7 @@ const StarRatings = ({ maxRating = 5 }) => {
                     </span>
                 ))}
             </div>
-            {rating ? <p>{rating}</p> : ""}
+            {rating ? <p>{`"${getRatingQuote.get(rating)}"`}</p> : ""}
         </div>
     );
 };

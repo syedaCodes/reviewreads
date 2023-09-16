@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ViewBooks from "./BookView/ViewBook";
+import ViewBook from "./BookView/ViewBook";
 import ReviewTabs from "./ReviewTabs";
 import Button from "./Button";
 
@@ -27,7 +27,7 @@ const ReviewContainer = ({ selectedBook }) => {
 
             <div className="view">
                 {!isActive && Object.keys(selectedBook).length > 0 && (
-                    <ViewBooks selectedBook={selectedBook} />
+                    <ViewBook selectedBook={selectedBook} />
                 )}
             </div>
         </div>

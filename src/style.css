@@ -110,7 +110,7 @@ header h3::first-letter{
 }
 main{
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     height: calc(100vh - 8.5rem);
 }
 main aside{
@@ -272,7 +272,8 @@ aside > div::-webkit-scrollbar-thumb
 .review-stars p{
     margin-left: 1rem;
     font-weight: 600;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
 }
 .review-stars p,
 .stars span:hover,
