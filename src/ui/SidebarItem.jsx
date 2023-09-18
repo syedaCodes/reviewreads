@@ -10,6 +10,7 @@ const SidebarItem = ({ book, onSelectBook }) => {
                 />
             </div>
             <ItemDetails
+                key={`${book.key}-details`}
                 title={book?.title}
                 author={book?.author_name}
                 publishDate={book?.publish_date}

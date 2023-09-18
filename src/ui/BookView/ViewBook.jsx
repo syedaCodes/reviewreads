@@ -16,13 +16,14 @@ const ViewBook = ({ selectedBook }) => {
                     publishDate={selectedBook?.publish_date}
                     language={selectedBook?.language}
                     title={selectedBook?.title}
+                    ratings={selectedBook?.ratings_average}
                 />
             </div>
             <div className="view-body">
                 {selectedBook.first_sentence ? (
                     <>
                         <h4>Opening line:</h4>
-                        <p>{selectedBook?.first_sentence[0]}</p>
+                        <p>{selectedBook?.first_sentence.at(0)}</p>
                     </>
                 ) : null}
             </div>

@@ -1,14 +1,16 @@
-const ViewBookDetails = ({ title, author, publishDate, language }) => {
+const ViewBookDetails = ({ title, author, publishDate, language, ratings }) => {
     return (
         <div className="view-book-details">
             <h4>{title}</h4>
-            {author && <h5>by {Array.isArray(author) ? author[0] : author}</h5>}
+            {author && (
+                <h5>by {Array.isArray(author) ? author.at(0) : author}</h5>
+            )}
             <div className="details-meta">
                 {publishDate && (
                     <p>
                         📆 Published:{" "}
                         {Array.isArray(publishDate)
-                            ? publishDate[0]
+                            ? publishDate.at(0)
                             : publishDate}
                     </p>
                 )}
@@ -17,7 +19,20 @@ const ViewBookDetails = ({ title, author, publishDate, language }) => {
                     <p>
                         🌐 Language:{" "}
                         <span>
-                            {!Array.isArray(language) ? language : language[0]}
+                            {!Array.isArray(language)
+                                ? language
+                                : language.at(0)}
+                        </span>
+                    </p>
+                )}
+
+                {ratings && (
+                    <p>
+                        🌟 Ratings:{" "}
+                        <span>
+                            {!Array.isArray(ratings)
+                                ? ratings.toFixed(2)
+                                : ratings.at(0)}
                         </span>
                     </p>
                 )}

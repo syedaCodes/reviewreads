@@ -20,9 +20,10 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     color: var(--color-text-secondary);
-    background: linear-gradient(-45deg, #d8078e, #fc7802, var(--color-secondary));
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background: linear-gradient(-45deg, #d8078e, #fc7802, var(--color-secondary)); */
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    background: #874646;
     max-height: 100vh;
 }
 .row-flex-center{
@@ -184,8 +185,11 @@ aside > div::-webkit-scrollbar-thumb
     padding: 1rem 0;
 }
 .book-details-footer p:last-child,
-.details-meta p:last-child{
+.details-meta p:nth-of-type(2){
     text-transform: capitalize;
+}
+.review-container{
+    margin-left: 2rem;
 }
 .review-tabs{
     margin: 1rem 0;
@@ -239,6 +243,9 @@ aside > div::-webkit-scrollbar-thumb
     margin-top: 1rem;
     padding: 1rem 0;
 }
+.details-meta p{
+    padding: .5rem 0;
+}
 .view-footer{
     position: absolute;
     bottom: 0%;
@@ -280,6 +287,40 @@ aside > div::-webkit-scrollbar-thumb
 .stars span:hover ~ span,
 .stars span.active{
     color: gold;
+}
+.errorContainer{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin: 0 auto;
+}
+.loader{
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    border: .4rem solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    margin: auto;
+}
+.loader div{
+    position: absolute;
+    bottom: -.4rem;
+    left: -.4rem;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    border: .4rem solid transparent;
+    border-bottom: .4rem solid var(--color-primary);
+    animation: loaderOnLoad 2s linear infinite;
+}
+@keyframes loaderOnLoad{
+    0% {
+      transform: rotate(0deg);
+    }
+    
+    100% {
+      transform: rotate(360deg);
+    }
 }
 @media only screen and (max-width: 56.25em){
     html{

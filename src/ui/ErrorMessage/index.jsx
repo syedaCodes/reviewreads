@@ -1,7 +1,7 @@
-const ErrorMessage = ({ children }) => {
+const ErrorMessage = ({ message }) => {
     return (
-        <div>
-            <p>{children}</p>
+        <div className="errorContainer">
+            <p>⛔ {message}</p>
         </div>
     );
 };

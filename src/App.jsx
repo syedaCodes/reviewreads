@@ -6,7 +6,7 @@ import Sidebar from "./ui/Sidebar";
 import ReviewContainer from "./ui/ReviewContainer";
 import Search from "./features/Search";
 import ResultsCount from "./ui/ResultsCount";
-import LoaderText from "./ui/LoaderText";
+import Loader from "./ui/Loader";
 import ErrorMessage from "./ui/ErrorMessage";
 
 const App = () => {
@@ -15,26 +15,34 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const cleanData = () => {
+    const clearData = () => {
         setBooksData([]);
         setBookSelected({});
         setError("");
     };
 
     const handleSubmit = async (search) => {
-        cleanData();
+        clearData();
         const query = search.replace(" ", "+");
+
+        if (search) {
+            setIsLoading(true);
+        } else {
+            setError("Please enter a valid book name");
+            return;
+        }
+
         const res = await getBooks(query);
-        setIsLoading(true);
 
         if (!res.docs || res.error) {
             setError(res.error);
         }
 
-        if (res.docs) {
+        if (res.docs.length > 0) {
             setBooksData((data) => [...res.docs, data]);
         }
 
+        console.log(booksData);
         setIsLoading(false);
     };
 
@@ -49,21 +57,22 @@ const App = () => {
                 <ResultsCount results={booksData?.length} />
             </Header>
             <Dashboard>
-                {!isLoading && booksData.length > 0 && !error && (
-                    <>
-                        <Sidebar
-                            data={booksData}
-                            onSelectBook={handleSelectedBook}
-                        />
-                        {Object.keys(bookSelected).length > 0 && (
-                            <ReviewContainer selectedBook={bookSelected} />
-                        )}
-                    </>
-                )}
-
-                {isLoading && !error && <LoaderText>Loading...</LoaderText>}
-
-                {error ? <ErrorMessage>{error}</ErrorMessage> : null}
+                {!isLoading && !error
+                    ? booksData.length > 0 && (
+                          <>
+                              <Sidebar
+                                  data={booksData}
+                                  onSelectBook={handleSelectedBook}
+                              />
+                              {Object.keys(bookSelected).length > 0 && (
+                                  <ReviewContainer
+                                      selectedBook={bookSelected}
+                                  />
+                              )}
+                          </>
+                      )
+                    : !error && <Loader>Loading...</Loader>}
+                {error && <ErrorMessage message={error} />}
             </Dashboard>
         </div>
     );

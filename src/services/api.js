@@ -12,11 +12,15 @@ export async function getBooks(query) {
 
         const { docs } = await res.json();
 
-        if (!docs.length) throw "Book not found";
+        if (!docs.length || !docs.length > 0) throw "Book not found";
 
         response.docs = docs;
     } catch (err) {
-        response.error = err.message;
+        if (typeof err === "object") {
+            response.error = err.message;
+        } else {
+            response.error = err;
+        }
     }
 
     return response;
