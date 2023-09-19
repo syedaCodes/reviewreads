@@ -4,22 +4,21 @@ const ReviewedBook = ({ booksReviewed }) => {
             {booksReviewed?.length > 0 ? (
                 <ul className="book-reviews">
                     {booksReviewed?.map((book) => (
-                        <li key={book?.isbn.at(0)}>
+                        <li key={book?.isbn}>
                             <div className="book-cover">
                                 <img
-                                    src={`https://covers.openlibrary.org/b/id/${book?.cover_i}-S.jpg`}
+                                    src={`https://covers.openlibrary.org/b/id/${book?.cover}-S.jpg`}
                                     alt={book?.title}
                                 />
                             </div>
                             <div className="book-details">
                                 <h5>{book?.title}</h5>
                                 <div className="book-meta-details">
-                                    <p>
-                                        🌟{" "}
-                                        {book.ratings_average
-                                            ? book?.ratings_average.toFixed(2)
-                                            : null}
-                                    </p>
+                                    {book.avg_rating && (
+                                        <p>🌟 {book?.avg_rating}</p>
+                                    )}
+                                    <p>⭐ {book?.rated}</p>
+                                    <p>📆 {book?.published}</p>
                                 </div>
                             </div>
                         </li>

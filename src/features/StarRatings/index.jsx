@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const StarRatings = ({ maxRating = 5 }) => {
+const StarRatings = ({ maxRating = 5, onSetRating }) => {
     const [rating, setRating] = useState(0);
 
     const getRatingQuote = new Map([
@@ -13,6 +13,7 @@ const StarRatings = ({ maxRating = 5 }) => {
 
     const handleClick = (rating) => {
         setRating(rating);
+        onSetRating(rating);
     };
 
     return (
