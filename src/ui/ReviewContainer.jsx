@@ -9,23 +9,18 @@ const ReviewContainer = ({ selectedBook, tabActive, onTabSwitch }) => {
     const [booksReviewed, setBooksReviewed] = useState([]);
 
     const findBook = (book) => {
-        const bookFound = booksReviewed.find((item) => item.key !== book.key);
+        const bookFound = booksReviewed.find(
+            (item) => item.isbn.at(0) === book.isbn.at(0)
+        );
         return bookFound;
     };
 
     const handleAddToList = (addBook) => {
         const bookFound = findBook(addBook);
-        !booksReviewed.length > 0
-            ? setBooksReviewed((booksReviewed) => [...booksReviewed, addBook])
-            : setBooksReviewed((booksReviewed) =>
-                  bookFound
-                      ? booksReviewed.map((book) =>
-                            book.isbn.at(0) !== addBook.isbn.at(0)
-                                ? [...booksReviewed, addBook]
-                                : booksReviewed
-                        )
-                      : booksReviewed
-              );
+
+        if (!booksReviewed.length > 0 || !bookFound) {
+            setBooksReviewed((booksReviewed) => [...booksReviewed, addBook]);
+        }
     };
 
     const handleTabs = (tab) => onTabSwitch(tab);

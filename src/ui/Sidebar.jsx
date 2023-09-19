@@ -7,14 +7,12 @@ const Sidebar = ({ data, onSelectBook }) => {
             <div className="booksList">
                 {data.length > 0 ? (
                     <ul>
-                        {data?.map((book) => (
-                            <>
-                                <SidebarItem
-                                    key={book.isbn.at(0)}
-                                    book={book}
-                                    onSelectBook={onSelectBook}
-                                />
-                            </>
+                        {data?.map((book, index) => (
+                            <SidebarItem
+                                key={`${book.isbn.at(0)}-${index}`}
+                                book={book}
+                                onSelectBook={onSelectBook}
+                            />
                         ))}
                     </ul>
                 ) : (
