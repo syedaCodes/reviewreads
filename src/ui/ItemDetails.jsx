@@ -3,7 +3,9 @@ const ItemDetails = ({ title, author, publishDate, language }) => {
         <div className="book-details">
             <div className="book-details-head">
                 <h4>{title}</h4>
-                <p>by {author}</p>
+                {author && (
+                    <p>by {Array.isArray(author) ? author[0] : author}</p>
+                )}
             </div>
 
             <div className="book-details-footer">
