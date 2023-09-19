@@ -24,6 +24,7 @@ body{
     /* background-repeat: no-repeat;
     background-size: cover; */
     background: #874646;
+    /* 528746 */
     max-height: 100vh;
 }
 .row-flex-center{
@@ -51,7 +52,7 @@ header h3{
 header h3::first-letter{
     font-size: 3rem;
 }
-.search-component, .total-results, .booksList ul li{
+.search-component, .total-results, .booksList ul li, .book-reviews li{
     border-radius: 5rem;
     padding: .2rem;
     background: rgba( 255, 255, 255, 0.25 );
@@ -132,18 +133,20 @@ aside > div{
     height: calc(100vh - 11.48rem);
     overflow-y: scroll;
 }
-aside > div::-webkit-scrollbar-track
-{
+aside > div::-webkit-scrollbar-track,
+.book-reviews::-webkit-scrollbar-track{
 	-webkit-box-shadow: inset 0 0 6px var(--color-primary);
 	border-radius: 10px;
 	background-color: transparent;
 }
-aside > div::-webkit-scrollbar
+aside > div::-webkit-scrollbar,
+.book-reviews::-webkit-scrollbar
 {
 	width: 12px;
 	background-color: transparent;
 }
-aside > div::-webkit-scrollbar-thumb
+aside > div::-webkit-scrollbar-thumb,
+.book-reviews::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px var(--color-primary);
@@ -312,6 +315,30 @@ aside > div::-webkit-scrollbar-thumb
     border: .4rem solid transparent;
     border-bottom: .4rem solid var(--color-primary);
     animation: loaderOnLoad 2s linear infinite;
+}
+.book-reviews{
+    height: 100%;
+    list-style: none;
+    overflow-y: scroll;
+}
+.book-reviews li {
+    border-radius: .5rem;
+    padding: 1rem;
+    display: flex;
+    width: 90%;
+}
+.book-reviews li:not(:last-child){
+    margin-bottom: 1rem;
+}
+.book-reviews li .book-cover{
+    width: 5rem;
+}
+.book-reviews .book-details h5{
+    font-size: 1.4rem;
+}
+.book-details .book-meta-details{
+    display: flex;
+    padding: 1rem 0;
 }
 @keyframes loaderOnLoad{
     0% {

@@ -6,13 +6,14 @@ import Sidebar from "./ui/Sidebar";
 import ReviewContainer from "./ui/ReviewContainer";
 import Search from "./features/Search";
 import ResultsCount from "./ui/ResultsCount";
-import Loader from "./ui/Loader";
+import Loader from "./ui/LoaderText";
 import ErrorMessage from "./ui/ErrorMessage";
 
 const App = () => {
     const [booksData, setBooksData] = useState([]);
     const [bookSelected, setBookSelected] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [isActiveTab, setIsActiveTab] = useState(0);
     const [error, setError] = useState("");
 
     const clearData = () => {
@@ -39,15 +40,25 @@ const App = () => {
         }
 
         if (res.docs.length > 0) {
-            setBooksData((data) => [...res.docs, data]);
+            setBooksData((data) => {
+                const filtered = res.docs.filter((book) => book.isbn);
+                return [...data, ...filtered];
+            });
         }
-
-        console.log(booksData);
         setIsLoading(false);
     };
 
+    const handleTab = (tabSelected) => {
+        setIsActiveTab((isActiveTab) =>
+            isActiveTab === tabSelected ? isActiveTab : tabSelected
+        );
+    };
+
     const handleSelectedBook = (key) => {
-        setBookSelected(() => booksData?.find((book) => book.key === key));
+        handleTab(0);
+        setBookSelected(() =>
+            booksData.find((book) => book.isbn.at(0) === key)
+        );
     };
 
     return (
@@ -64,11 +75,14 @@ const App = () => {
                                   data={booksData}
                                   onSelectBook={handleSelectedBook}
                               />
-                              {Object.keys(bookSelected).length > 0 && (
+                              {console.log(booksData)}
+                              {Object.keys(bookSelected).length > 0 ? (
                                   <ReviewContainer
+                                      tabActive={isActiveTab}
+                                      onTabSwitch={handleTab}
                                       selectedBook={bookSelected}
                                   />
-                              )}
+                              ) : null}
                           </>
                       )
                     : !error && <Loader>Loading...</Loader>}

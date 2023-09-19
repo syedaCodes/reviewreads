@@ -1,7 +1,12 @@
+import StarRatings from "../../features/StarRatings";
+import Button from "../Button";
 import ViewBookDetails from "./ViewBookDetails";
 import ViewBookFooter from "./ViewBookFooter";
 
-const ViewBook = ({ selectedBook }) => {
+const ViewBook = ({ selectedBook, onAddToList }) => {
+    const addBookToReviewed = () => {
+        onAddToList(selectedBook);
+    };
     return (
         <>
             <div className="view-head">
@@ -27,7 +32,15 @@ const ViewBook = ({ selectedBook }) => {
                     </>
                 ) : null}
             </div>
-            <ViewBookFooter />
+            <ViewBookFooter>
+                <StarRatings />
+                <Button
+                    nameClass={"btn-primary"}
+                    handleClick={addBookToReviewed}
+                >
+                    Add to list
+                </Button>
+            </ViewBookFooter>
         </>
     );
 };

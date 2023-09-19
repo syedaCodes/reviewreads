@@ -1,4 +1,4 @@
-import LoaderText from "./Loader";
+import Loader from "./LoaderText";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = ({ data, onSelectBook }) => {
@@ -7,16 +7,18 @@ const Sidebar = ({ data, onSelectBook }) => {
             <div className="booksList">
                 {data.length > 0 ? (
                     <ul>
-                        {data?.map((book, index) => (
-                            <SidebarItem
-                                key={`${book?.key}-${index}`}
-                                book={book}
-                                onSelectBook={onSelectBook}
-                            />
+                        {data?.map((book) => (
+                            <>
+                                <SidebarItem
+                                    key={book.isbn.at(0)}
+                                    book={book}
+                                    onSelectBook={onSelectBook}
+                                />
+                            </>
                         ))}
                     </ul>
                 ) : (
-                    <LoaderText>Just a minute..</LoaderText>
+                    <Loader>Just a minute..</Loader>
                 )}
             </div>
         </aside>

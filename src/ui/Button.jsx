@@ -1,9 +1,7 @@
-const Button = ({ children, nameClass, num, handleClick }) => {
+const Button = ({ children, nameClass, handleClick }) => {
     return (
         <button
-            className={
-                nameClass === num ? `btn btn-primary active` : "btn btn-primary"
-            }
+            className={nameClass ? "btn btn-primary active" : "btn btn-primary"}
             onClick={handleClick}
         >
             {children}
