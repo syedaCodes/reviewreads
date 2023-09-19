@@ -1,4 +1,4 @@
-import Loader from "./LoaderText";
+import Loader from "./Loader";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = ({ data, onSelectBook }) => {

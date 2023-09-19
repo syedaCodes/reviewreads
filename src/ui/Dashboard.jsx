@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import ReviewContainer from "./ReviewContainer";
-import Loader from "./LoaderText";
+import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 
 const Dashboard = ({ isLoading, error, booksData }) => {
