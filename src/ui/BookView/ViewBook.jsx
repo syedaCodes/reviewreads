@@ -21,32 +21,31 @@ const ViewBook = ({
             <div className="view-head">
                 <div className="view-img">
                     <img
-                        src={`https://covers.openlibrary.org/b/id/${selectedBook?.cover_i}-M.jpg`}
+                        src={`https://covers.openlibrary.org/b/id/${selectedBook?.cover}-M.jpg`}
                         alt={selectedBook?.title}
                     />
                 </div>
                 <ViewBookDetails
                     author={selectedBook?.author_name}
-                    publishDate={selectedBook?.publish_date}
+                    publishDate={selectedBook?.published}
                     language={selectedBook?.language}
                     title={selectedBook?.title}
-                    ratings={selectedBook?.ratings_average}
+                    ratings={selectedBook?.avg_rating}
                 />
             </div>
             <div className="view-body">
                 {selectedBook.first_sentence ? (
                     <>
                         <h4>Opening line:</h4>
-                        <p>{selectedBook?.first_sentence.at(0)}</p>
+                        <p>{selectedBook?.first_sentence}</p>
                     </>
                 ) : null}
             </div>
             <ViewBookFooter>
-                {console.log(isRated)}
                 {!isRated ? (
                     <>
                         <StarRatings
-                            key={selectedBook.isbn.at(0)}
+                            key={selectedBook.isbn}
                             onSetRating={handleUserRating}
                         />
                         {userRating > 0 && (

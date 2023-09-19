@@ -16,9 +16,7 @@ const Dashboard = ({ isLoading, error, booksData }) => {
 
     const handleSelectedBook = (key) => {
         handleTab(0);
-        setBookSelected(() =>
-            booksData.find((book) => book.isbn.at(0) === key)
-        );
+        setBookSelected(() => booksData.find((book) => book.isbn === key));
     };
 
     return (

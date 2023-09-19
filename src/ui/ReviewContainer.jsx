@@ -10,37 +10,21 @@ const ReviewContainer = ({ selectedBook, tabActive, onTabSwitch }) => {
     const [userRating, setUserRating] = useState("");
 
     const findBook = (book) => {
-        const bookFound = booksReviewed.find(
-            (item) => item.isbn === book.isbn.at(0)
-        );
+        const bookFound = booksReviewed.find((item) => item.isbn === book.isbn);
         return bookFound;
     };
 
     const isRated = findBook(selectedBook);
 
-    const handleAddToList = ({
-        title,
-        isbn,
-        ratings_average,
-        cover_i,
-        publish_date,
-    }) => {
-        const readBook = {
-            title,
-            isbn: isbn.at(0),
-            avg_rating: ratings_average?.toFixed(2),
-            cover: cover_i,
-            rated: userRating,
-            published: new Date(publish_date.at(0)).getFullYear(),
-        };
+    const handleAddToList = (book) => {
+        book.rated = userRating;
 
         //check if the book exists in the already rated books
-        const bookFound = findBook(readBook);
+        const bookFound = findBook(book);
 
         //if the rated list is empty or if the book is not rated
         if (!booksReviewed.length > 0 || !bookFound) {
-            console.log(bookFound);
-            setBooksReviewed((booksReviewed) => [...booksReviewed, readBook]);
+            setBooksReviewed((booksReviewed) => [...booksReviewed, book]);
         }
     };
 
