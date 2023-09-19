@@ -3,7 +3,16 @@ import Button from "../Button";
 import ViewBookDetails from "./ViewBookDetails";
 import ViewBookFooter from "./ViewBookFooter";
 
-const ViewBook = ({ selectedBook, onAddToList }) => {
+const ViewBook = ({
+    selectedBook,
+    onAddToList,
+    onSetUserRating,
+    userRating,
+    isRated,
+}) => {
+    const handleUserRating = (rated) => {
+        onSetUserRating(rated);
+    };
     const addBookToReviewed = () => {
         onAddToList(selectedBook);
     };
@@ -33,13 +42,25 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
                 ) : null}
             </div>
             <ViewBookFooter>
-                <StarRatings />
-                <Button
-                    nameClass={"btn-primary"}
-                    handleClick={addBookToReviewed}
-                >
-                    Add to list
-                </Button>
+                {console.log(isRated)}
+                {!isRated ? (
+                    <>
+                        <StarRatings
+                            key={selectedBook.isbn.at(0)}
+                            onSetRating={handleUserRating}
+                        />
+                        {userRating > 0 && (
+                            <Button
+                                nameClass={"btn-primary"}
+                                handleClick={addBookToReviewed}
+                            >
+                                Add to list
+                            </Button>
+                        )}
+                    </>
+                ) : (
+                    <p>You have rated this book</p>
+                )}
             </ViewBookFooter>
         </>
     );

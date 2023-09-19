@@ -268,7 +268,7 @@ aside > div::-webkit-scrollbar-thumb,
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-width: 20rem;
+    min-width: fit-content;
 }
 .stars{
     display: flex;
@@ -338,7 +338,12 @@ aside > div::-webkit-scrollbar-thumb,
 }
 .book-details .book-meta-details{
     display: flex;
+    justify-content: flex-end;
     padding: 1rem 0;
+    width: 25rem;
+}
+.book-details .book-meta-details p{
+    width: 33%;
 }
 @keyframes loaderOnLoad{
     0% {

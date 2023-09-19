@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Sidebar from "./Sidebar";
 import ReviewContainer from "./ReviewContainer";
 import Loader from "./Loader";
@@ -7,12 +7,6 @@ import ErrorMessage from "./ErrorMessage";
 const Dashboard = ({ isLoading, error, booksData }) => {
     const [bookSelected, setBookSelected] = useState({});
     const [isActiveTab, setIsActiveTab] = useState(0);
-
-    useEffect(() => {
-        return () => {
-            setBookSelected({});
-        };
-    }, []);
 
     const handleTab = (tabSelected) => {
         setIsActiveTab((isActiveTab) =>
