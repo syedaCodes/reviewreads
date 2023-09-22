@@ -15,6 +15,10 @@ const ReviewContainer = ({
 
     useEffect(() => {
         setUserRating(-1);
+
+        return () => {
+            setUserRating(-1);
+        };
     }, [activeTab]);
 
     const findBook = (book) => {
