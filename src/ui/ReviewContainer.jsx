@@ -1,12 +1,16 @@
 import { useState } from "react";
 import ViewBook from "./BookView/ViewBook";
 import ReviewTabs from "./ReviewTabs";
-import Button from "./Button";
 import ReviewSections from "./ReviewSections";
 import ReviewedBook from "./ReviewedBook";
 
-const ReviewContainer = ({ selectedBook, tabActive, onTabSwitch }) => {
-    const [booksReviewed, setBooksReviewed] = useState([]);
+const ReviewContainer = ({
+    activeTab,
+    selectedBook,
+    booksReviewed,
+    onHandleList,
+    children,
+}) => {
     const [userRating, setUserRating] = useState("");
 
     const findBook = (book) => {
@@ -24,31 +28,16 @@ const ReviewContainer = ({ selectedBook, tabActive, onTabSwitch }) => {
 
         //if the rated list is empty or if the book is not rated
         if (!booksReviewed.length > 0 || !bookFound) {
-            setBooksReviewed((booksReviewed) => [...booksReviewed, book]);
+            onHandleList(book);
         }
     };
 
-    const handleTabs = (tab) => onTabSwitch(tab);
-
     return (
         <div className="review-container">
-            <ReviewTabs>
-                <Button
-                    nameClass={tabActive === 0}
-                    handleClick={() => handleTabs(0)}
-                >
-                    Book view
-                </Button>
-                <Button
-                    nameClass={tabActive === 1}
-                    handleClick={() => handleTabs(1)}
-                >
-                    Books Reviewed
-                </Button>
-            </ReviewTabs>
+            <ReviewTabs>{children}</ReviewTabs>
 
             <ReviewSections>
-                {tabActive === 0 && Object.keys(selectedBook).length > 0 ? (
+                {activeTab === 0 && Object.keys(selectedBook).length > 0 ? (
                     <ViewBook
                         isRated={isRated}
                         userRating={userRating}
@@ -58,7 +47,7 @@ const ReviewContainer = ({ selectedBook, tabActive, onTabSwitch }) => {
                     />
                 ) : null}
 
-                {tabActive === 1 ? (
+                {activeTab === 1 ? (
                     <ReviewedBook
                         booksReviewed={booksReviewed.length && booksReviewed}
                     />

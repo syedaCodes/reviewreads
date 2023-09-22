@@ -3,8 +3,10 @@ import Sidebar from "./Sidebar";
 import ReviewContainer from "./ReviewContainer";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
+import Button from "./Button";
 
 const Dashboard = ({ isLoading, error, booksData }) => {
+    const [booksReviewed, setBooksReviewed] = useState([]);
     const [bookSelected, setBookSelected] = useState({});
     const [isActiveTab, setIsActiveTab] = useState(0);
 
@@ -19,6 +21,10 @@ const Dashboard = ({ isLoading, error, booksData }) => {
         setBookSelected(() => booksData.find((book) => book.isbn === key));
     };
 
+    const handleReviewedList = (book) => {
+        setBooksReviewed((booksReviewed) => [...booksReviewed, book]);
+    };
+
     return (
         <main>
             {!isLoading && !error
@@ -30,10 +36,24 @@ const Dashboard = ({ isLoading, error, booksData }) => {
                           />
                           {Object.keys(bookSelected).length > 0 ? (
                               <ReviewContainer
-                                  tabActive={isActiveTab}
-                                  onTabSwitch={handleTab}
+                                  activeTab={isActiveTab}
                                   selectedBook={bookSelected}
-                              />
+                                  booksReviewed={booksReviewed}
+                                  onHandleList={handleReviewedList}
+                              >
+                                  <Button
+                                      nameClass={isActiveTab === 0}
+                                      handleClick={() => setIsActiveTab(0)}
+                                  >
+                                      Book view
+                                  </Button>
+                                  <Button
+                                      nameClass={isActiveTab === 1}
+                                      handleClick={() => setIsActiveTab(1)}
+                                  >
+                                      Books Reviewed
+                                  </Button>
+                              </ReviewContainer>
                           ) : null}
                       </>
                   )
