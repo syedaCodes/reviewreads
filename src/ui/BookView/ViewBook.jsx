@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import StarRatings from "../../features/StarRatings";
 import Button from "../Button";
 import ViewBookDetails from "./ViewBookDetails";
@@ -10,6 +11,15 @@ const ViewBook = ({
     userRating,
     isRated,
 }) => {
+    useEffect(() => {
+        if (!selectedBook.title) return;
+        document.title = `Book | ${selectedBook?.title}`;
+
+        return () => {
+            document.title = "Review Reads";
+        };
+    }, [selectedBook]);
+
     const handleUserRating = (rated) => {
         onSetUserRating(rated);
     };
