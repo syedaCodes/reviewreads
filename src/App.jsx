@@ -16,10 +16,10 @@ const App = () => {
     };
 
     const getDataSorted = (books) => {
-        const sortedData = books
-            .filter((book) => book.isbn)
-            .map(
-                ({
+        const sortedData = books.reduce(
+            (
+                result,
+                {
                     key,
                     title,
                     cover_i,
@@ -29,22 +29,36 @@ const App = () => {
                     isbn,
                     ratings_average,
                     first_sentence,
-                }) => {
-                    const data = {
-                        key,
-                        title: title,
-                        cover: cover_i,
-                        author_name,
-                        published: new Date(publish_date?.at(0)).getFullYear(),
-                        language,
-                        isbn: isbn.at(0),
-                        first_sentence: first_sentence?.at(0),
-                        avg_rating: ratings_average?.toFixed(2),
-                    };
-
-                    return data;
                 }
-            );
+            ) => {
+                if (!isbn) {
+                    return result;
+                }
+
+                const isbnValue = isbn[0];
+                const publishedValue = new Date(
+                    publish_date?.at(0)
+                ).getFullYear();
+                const firstSentence = first_sentence?.at(0);
+                const averageRating = ratings_average?.toFixed(2);
+
+                const data = {
+                    key,
+                    title: title,
+                    cover: cover_i,
+                    author_name,
+                    published: publishedValue,
+                    language,
+                    isbn: isbnValue,
+                    first_sentence: firstSentence,
+                    avg_rating: averageRating,
+                };
+
+                return [...result, data];
+            },
+            []
+        );
+
         return sortedData;
     };
 
