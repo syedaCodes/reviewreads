@@ -6,14 +6,7 @@ const ViewBookDetails = ({ title, author, publishDate, language, ratings }) => {
                 <h5>by {Array.isArray(author) ? author.at(0) : author}</h5>
             )}
             <div className="details-meta">
-                {publishDate && (
-                    <p>
-                        📆 Published:{" "}
-                        {Array.isArray(publishDate)
-                            ? publishDate.at(0)
-                            : publishDate}
-                    </p>
-                )}
+                {publishDate && <p>📆 Published: {publishDate}</p>}
 
                 {language && (
                     <p>
@@ -28,12 +21,7 @@ const ViewBookDetails = ({ title, author, publishDate, language, ratings }) => {
 
                 {ratings && (
                     <p>
-                        🌟 Ratings:{" "}
-                        <span>
-                            {!Array.isArray(ratings)
-                                ? ratings.toFixed(2)
-                                : ratings.at(0)}
-                        </span>
+                        🌟 Ratings: <span>{ratings}</span>
                     </p>
                 )}
             </div>

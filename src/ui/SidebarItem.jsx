@@ -2,10 +2,10 @@ import ItemDetails from "./ItemDetails";
 
 const SidebarItem = ({ book, onSelectBook }) => {
     return (
-        <li onClick={() => onSelectBook(book.isbn.at(0))}>
+        <li onClick={() => onSelectBook(book.isbn)}>
             <div className="book-cover">
                 <img
-                    src={`https://covers.openlibrary.org/b/id/${book?.cover_i}-M.jpg`}
+                    src={`https://covers.openlibrary.org/b/id/${book?.cover}-M.jpg`}
                     alt={book?.title}
                 />
             </div>
@@ -13,7 +13,7 @@ const SidebarItem = ({ book, onSelectBook }) => {
                 key={`${book.key}-details`}
                 title={book?.title}
                 author={book?.author_name}
-                publishDate={book?.publish_date}
+                publishDate={book?.published}
                 language={book?.language}
             />
         </li>

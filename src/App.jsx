@@ -15,6 +15,53 @@ const App = () => {
         setError("");
     };
 
+    const getDataSorted = (books) => {
+        const sortedData = books.reduce(
+            (
+                result,
+                {
+                    key,
+                    title,
+                    cover_i,
+                    author_name,
+                    publish_date,
+                    language,
+                    isbn,
+                    ratings_average,
+                    first_sentence,
+                }
+            ) => {
+                if (!isbn) {
+                    return result;
+                }
+
+                const isbnValue = isbn[0];
+                const publishedValue = new Date(
+                    publish_date?.at(0)
+                ).getFullYear();
+                const firstSentence = first_sentence?.at(0);
+                const averageRating = ratings_average?.toFixed(2);
+
+                const data = {
+                    key,
+                    title: title,
+                    cover: cover_i,
+                    author_name,
+                    published: publishedValue,
+                    language,
+                    isbn: isbnValue,
+                    first_sentence: firstSentence,
+                    avg_rating: averageRating,
+                };
+
+                return [...result, data];
+            },
+            []
+        );
+
+        return sortedData;
+    };
+
     const handleSubmit = async (search) => {
         clearData();
         const query = search.replace(" ", "+");
@@ -33,10 +80,8 @@ const App = () => {
         }
 
         if (res.docs.length > 0) {
-            setBooksData((data) => {
-                const filtered = res.docs.filter((book) => book.isbn);
-                return [...data, ...filtered];
-            });
+            const sortedData = getDataSorted(res.docs);
+            setBooksData((booksData) => [...booksData, ...sortedData]);
         }
         setIsLoading(false);
     };
