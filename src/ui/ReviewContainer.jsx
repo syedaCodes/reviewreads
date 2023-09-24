@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import ViewBook from "./BookView/ViewBook";
 import ReviewTabs from "./ReviewTabs";
 import ReviewSections from "./ReviewSections";
@@ -11,26 +10,12 @@ const ReviewContainer = ({
     onHandleList,
     children,
 }) => {
-    const [userRating, setUserRating] = useState(-1);
-
-    useEffect(() => {
-        setUserRating(-1);
-
-        return () => {
-            setUserRating(-1);
-        };
-    }, [activeTab]);
-
     const findBook = (book) => {
         const bookFound = booksReviewed.find((item) => item.isbn === book.isbn);
         return bookFound;
     };
 
-    const isRated = findBook(selectedBook);
-
     const handleAddToList = (book) => {
-        book.rated = userRating;
-
         //check if the book exists in the already rated books
         const bookFound = findBook(book);
 
@@ -47,9 +32,6 @@ const ReviewContainer = ({
             <ReviewSections>
                 {activeTab === 0 && Object.keys(selectedBook).length > 0 && (
                     <ViewBook
-                        isRated={isRated}
-                        userRating={userRating}
-                        onSetUserRating={setUserRating}
                         selectedBook={selectedBook}
                         onAddToList={handleAddToList}
                     />

@@ -1,16 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import StarRatings from "../../features/StarRatings";
 import Button from "../Button";
 import ViewBookDetails from "./ViewBookDetails";
 import ViewBookFooter from "./ViewBookFooter";
 
-const ViewBook = ({
-    selectedBook,
-    onAddToList,
-    onSetUserRating,
-    userRating,
-    isRated,
-}) => {
+const ViewBook = ({ selectedBook, onAddToList }) => {
+    const [userRating, setUserRating] = useState("");
+
     useEffect(() => {
         if (!selectedBook.title) return;
         document.title = `Book | ${selectedBook?.title}`;
@@ -21,13 +17,16 @@ const ViewBook = ({
     }, [selectedBook]);
 
     const handleUserRating = (rated) => {
-        onSetUserRating(rated);
+        setUserRating(rated);
+        // onSetUserRating(rated);
     };
     const addBookToReviewed = () => {
+        selectedBook.rated = userRating;
         onAddToList(selectedBook);
     };
     return (
         <>
+            {console.log(userRating)}
             <div className="view-head">
                 <div className="view-img">
                     <img
@@ -52,7 +51,7 @@ const ViewBook = ({
                 ) : null}
             </div>
             <ViewBookFooter>
-                {!isRated ? (
+                {!selectedBook.rated ? (
                     <>
                         <StarRatings
                             key={selectedBook.isbn}
