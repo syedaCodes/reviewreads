@@ -1,11 +1,16 @@
-import Loader from "./Loader";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = ({ data, onSelectBook }) => {
+    const enableScroll = {
+        overflowY: "scroll",
+    };
+
     return (
         <aside>
-            {console.log(data)}
-            <div className="booksList">
+            <div
+                className="booksList"
+                style={data?.length > 3 ? enableScroll : null}
+            >
                 {data.length > 0 ? (
                     <ul>
                         {data?.map((book, index) => (
@@ -17,7 +22,7 @@ const Sidebar = ({ data, onSelectBook }) => {
                         ))}
                     </ul>
                 ) : (
-                    <Loader>Just a minute..</Loader>
+                    <p>Search for a book</p>
                 )}
             </div>
         </aside>

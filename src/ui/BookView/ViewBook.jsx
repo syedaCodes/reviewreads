@@ -18,15 +18,15 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
 
     const handleUserRating = (rated) => {
         setUserRating(rated);
-        // onSetUserRating(rated);
     };
+
     const addBookToReviewed = () => {
         selectedBook.rated = userRating;
         onAddToList(selectedBook);
     };
+
     return (
         <>
-            {console.log(userRating)}
             <div className="view-head">
                 <div className="view-img">
                     <img

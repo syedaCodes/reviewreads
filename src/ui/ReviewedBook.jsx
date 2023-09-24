@@ -1,8 +1,15 @@
 const ReviewedBook = ({ booksReviewed }) => {
+    const enableScroll = {
+        overflowY: "scroll",
+    };
+
     return (
         <>
             {booksReviewed?.length > 0 ? (
-                <ul className="book-reviews">
+                <ul
+                    className="book-reviews"
+                    style={booksReviewed.length > 4 ? enableScroll : null}
+                >
                     {booksReviewed?.map((book) => (
                         <li key={book?.isbn}>
                             <div className="book-cover">
