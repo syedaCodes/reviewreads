@@ -64,6 +64,7 @@ const App = () => {
 
     const handleSubmit = async (search) => {
         clearData();
+
         const query = search.replace(" ", "+");
 
         if (search) {

@@ -9,7 +9,7 @@ const Search = ({ handleSubmit }) => {
     useEffect(() => {
         const callback = (e) => {
             if (document.activeElement === inputSearch.current) return;
-            if (e.code === "Enter") {
+            if (e.code !== "Enter") {
                 inputSearch.current.focus();
                 setSearch("");
             }
