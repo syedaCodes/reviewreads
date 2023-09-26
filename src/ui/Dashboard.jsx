@@ -36,6 +36,14 @@ const Dashboard = ({ isLoading, error, booksData }) => {
         setBooksReviewed((booksReviewed) => [...booksReviewed, book]);
     };
 
+    const onCrossBook = (book) => {
+        setBooksReviewed((booksReviewed) =>
+            booksReviewed.filter(
+                (bookReviewed) => bookReviewed.isbn !== book.isbn
+            )
+        );
+    };
+
     return (
         <main>
             {!isLoading && !error ? (
@@ -52,6 +60,7 @@ const Dashboard = ({ isLoading, error, booksData }) => {
                             activeTab={isActiveTab}
                             selectedBook={bookSelected}
                             booksReviewed={booksReviewed}
+                            onCrossBook={onCrossBook}
                             onHandleList={handleReviewedList}
                         >
                             {Object.keys(bookSelected).length > 0 && (

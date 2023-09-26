@@ -7,6 +7,11 @@
     padding: 1rem;
     display: flex;
     width: 90%;
+    align-items: center;
+}
+.book-reviews li > :last-child{
+    margin-left: auto;
+    padding: 0 1rem;
 }
 .book-reviews li:not(:last-child){
     margin-bottom: 1rem;

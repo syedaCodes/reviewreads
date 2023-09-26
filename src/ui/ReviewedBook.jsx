@@ -1,4 +1,4 @@
-const ReviewedBook = ({ booksReviewed }) => {
+const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
     const enableScroll = {
         overflowY: "scroll",
     };
@@ -27,6 +27,14 @@ const ReviewedBook = ({ booksReviewed }) => {
                                     <p>⭐ {book?.rated}</p>
                                     <p>📆 {book?.published}</p>
                                 </div>
+                            </div>
+                            <div>
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => onCrossBook(book)}
+                                >
+                                    ❌
+                                </button>
                             </div>
                         </li>
                     ))}

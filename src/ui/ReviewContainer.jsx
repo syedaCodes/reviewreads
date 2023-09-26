@@ -8,6 +8,7 @@ const ReviewContainer = ({
     selectedBook,
     booksReviewed,
     onHandleList,
+    onCrossBook,
     children,
 }) => {
     const handleAddToList = (book) => {
@@ -35,6 +36,7 @@ const ReviewContainer = ({
                 {activeTab === 1 && (
                     <ReviewedBook
                         booksReviewed={booksReviewed?.length && booksReviewed}
+                        onCrossBook={onCrossBook}
                     />
                 )}
             </div>
