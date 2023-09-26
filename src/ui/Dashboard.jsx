@@ -4,11 +4,19 @@ import ReviewContainer from "./ReviewContainer";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 import Button from "./Button";
+import { findItem } from "../utils/findItem";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Dashboard = ({ isLoading, error, booksData }) => {
-    const [booksReviewed, setBooksReviewed] = useState([]);
+    const [booksReviewed, setBooksReviewed] = useLocalStorage(
+        [],
+        "booksReviewed"
+    );
+
     const [bookSelected, setBookSelected] = useState({});
-    const [isActiveTab, setIsActiveTab] = useState(0);
+    const [isActiveTab, setIsActiveTab] = useState(
+        booksReviewed?.length ? 1 : 0
+    );
 
     const handleTab = (tabSelected) => {
         setIsActiveTab((isActiveTab) =>
@@ -16,48 +24,65 @@ const Dashboard = ({ isLoading, error, booksData }) => {
         );
     };
 
-    const handleSelectedBook = (key) => {
+    const handleSelectedBook = (selected) => {
         handleTab(0);
-        setBookSelected(() => booksData.find((book) => book.isbn === key));
+        const checkBookReviewed = findItem(booksReviewed, selected);
+        checkBookReviewed
+            ? setBookSelected(checkBookReviewed)
+            : setBookSelected(selected);
     };
 
     const handleReviewedList = (book) => {
         setBooksReviewed((booksReviewed) => [...booksReviewed, book]);
     };
 
+    const onCrossBook = (book) => {
+        setBooksReviewed((booksReviewed) =>
+            booksReviewed.filter(
+                (bookReviewed) => bookReviewed.isbn !== book.isbn
+            )
+        );
+    };
+
     return (
         <main>
-            {!isLoading && !error
-                ? booksData.length > 0 && (
-                      <>
-                          <Sidebar
-                              data={booksData}
-                              onSelectBook={handleSelectedBook}
-                          />
-                          {Object.keys(bookSelected).length > 0 ? (
-                              <ReviewContainer
-                                  activeTab={isActiveTab}
-                                  selectedBook={bookSelected}
-                                  booksReviewed={booksReviewed}
-                                  onHandleList={handleReviewedList}
-                              >
-                                  <Button
-                                      nameClass={isActiveTab === 0}
-                                      handleClick={() => setIsActiveTab(0)}
-                                  >
-                                      Book view
-                                  </Button>
-                                  <Button
-                                      nameClass={isActiveTab === 1}
-                                      handleClick={() => setIsActiveTab(1)}
-                                  >
-                                      Books Reviewed
-                                  </Button>
-                              </ReviewContainer>
-                          ) : null}
-                      </>
-                  )
-                : !error && <Loader>Loading...</Loader>}
+            {!isLoading && !error ? (
+                <>
+                    {/* {booksData.length > 0 && ( */}
+                    <Sidebar
+                        data={booksData}
+                        onSelectBook={handleSelectedBook}
+                    />
+                    {/* )} */}
+                    {Object.keys(bookSelected)?.length > 0 ||
+                    booksReviewed?.length > 0 ? (
+                        <ReviewContainer
+                            activeTab={isActiveTab}
+                            selectedBook={bookSelected}
+                            booksReviewed={booksReviewed}
+                            onCrossBook={onCrossBook}
+                            onHandleList={handleReviewedList}
+                        >
+                            {Object.keys(bookSelected).length > 0 && (
+                                <Button
+                                    nameClass={isActiveTab === 0}
+                                    handleClick={() => setIsActiveTab(0)}
+                                >
+                                    Book view
+                                </Button>
+                            )}
+                            <Button
+                                nameClass={isActiveTab === 1}
+                                handleClick={() => setIsActiveTab(1)}
+                            >
+                                Books Reviewed
+                            </Button>
+                        </ReviewContainer>
+                    ) : null}
+                </>
+            ) : (
+                !error && <Loader>Loading...</Loader>
+            )}
             {error && <ErrorMessage message={error} />}
         </main>
     );

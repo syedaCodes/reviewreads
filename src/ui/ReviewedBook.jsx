@@ -1,8 +1,15 @@
-const ReviewedBook = ({ booksReviewed }) => {
+const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
+    const enableScroll = {
+        overflowY: "scroll",
+    };
+
     return (
         <>
             {booksReviewed?.length > 0 ? (
-                <ul className="book-reviews">
+                <ul
+                    className="book-reviews"
+                    style={booksReviewed.length > 4 ? enableScroll : null}
+                >
                     {booksReviewed?.map((book) => (
                         <li key={book?.isbn}>
                             <div className="book-cover">
@@ -20,6 +27,14 @@ const ReviewedBook = ({ booksReviewed }) => {
                                     <p>⭐ {book?.rated}</p>
                                     <p>📆 {book?.published}</p>
                                 </div>
+                            </div>
+                            <div>
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => onCrossBook(book)}
+                                >
+                                    ❌
+                                </button>
                             </div>
                         </li>
                     ))}

@@ -1,0 +1,88 @@
+.view{
+    height: 70vh;
+    position: relative;
+}
+.view-head{
+    display: flex;
+}
+.view-img{
+    margin-right: 1.5rem;
+}
+.view-book-details{
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.view-body p{
+    padding: 1rem 0;
+    max-height: 9.5rem;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
+.view-book-details h4{
+    color: var(--color-primary);
+    font-size: 1.8rem;
+}
+.view-book-details h5{
+    font-size: 1.4rem;
+    padding: .5rem 0;
+    font-weight: 400;
+}
+.view-body h4{
+    font-weight: 600;
+}
+.view-body{
+    padding: 1rem;
+}
+.details-meta{
+    margin-top: 1rem;
+    padding: 1rem 0;
+}
+.details-meta p{
+    padding: .5rem 0;
+}
+.view-footer{
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(42, 42, 60, 0.25);
+    border-radius: .5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.view-footer button{
+    margin-right: 1rem;
+}
+.review-stars{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: fit-content;
+}
+.stars{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.stars span{
+    font-size: 2.5rem;
+    margin-right: .5rem;
+    cursor: pointer;
+}
+.review-stars p{
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
+}
+.review-stars p,
+.stars span:hover,
+.stars span:hover ~ span,
+.stars span.active{
+    color: gold;
+}
