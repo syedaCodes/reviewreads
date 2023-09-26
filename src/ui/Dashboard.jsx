@@ -1,30 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Sidebar from "./Sidebar";
 import ReviewContainer from "./ReviewContainer";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 import Button from "./Button";
 import { findItem } from "../utils/findItem";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Dashboard = ({ isLoading, error, booksData }) => {
-    const [booksReviewed, setBooksReviewed] = useState(function () {
-        const books = localStorage.getItem("booksReviewed");
-        const fromStorage = JSON.parse(books);
-        return fromStorage ? fromStorage : [];
-    });
+    const [booksReviewed, setBooksReviewed] = useLocalStorage(
+        [],
+        "booksReviewed"
+    );
 
     const [bookSelected, setBookSelected] = useState({});
     const [isActiveTab, setIsActiveTab] = useState(
         booksReviewed?.length ? 1 : 0
     );
-
-    useEffect(() => {
-        if (booksReviewed)
-            localStorage.setItem(
-                "booksReviewed",
-                JSON.stringify(booksReviewed)
-            );
-    }, [booksReviewed]);
 
     const handleTab = (tabSelected) => {
         setIsActiveTab((isActiveTab) =>
