@@ -1,15 +1,23 @@
+import { useWindowScrollAxis } from "../hooks/useWindowScrollAxis";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = ({ data, onSelectBook }) => {
-    const enableScroll = {
-        overflowY: "scroll",
-    };
+    const scrollAxis = useWindowScrollAxis(data);
+
+    const enableXScroll = { overflowX: "scroll" };
+    const enableYScroll = { overflowY: "scroll" };
 
     return (
         <aside>
             <div
                 className="booksList"
-                style={data?.length > 3 ? enableScroll : null}
+                style={
+                    scrollAxis && data?.length > 3
+                        ? enableXScroll
+                        : data.length > 3
+                        ? enableYScroll
+                        : null
+                }
             >
                 {data.length > 0 ? (
                     <ul>
@@ -22,7 +30,7 @@ const Sidebar = ({ data, onSelectBook }) => {
                         ))}
                     </ul>
                 ) : (
-                    <p>Search for a book</p>
+                    <p>Search a book you`ve read</p>
                 )}
             </div>
         </aside>

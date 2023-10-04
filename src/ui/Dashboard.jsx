@@ -48,12 +48,10 @@ const Dashboard = ({ isLoading, error, booksData }) => {
         <main>
             {!isLoading && !error ? (
                 <>
-                    {/* {booksData.length > 0 && ( */}
                     <Sidebar
                         data={booksData}
                         onSelectBook={handleSelectedBook}
                     />
-                    {/* )} */}
                     {Object.keys(bookSelected)?.length > 0 ||
                     booksReviewed?.length > 0 ? (
                         <ReviewContainer

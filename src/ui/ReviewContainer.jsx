@@ -25,7 +25,9 @@ const ReviewContainer = ({
         <div className="review-container">
             <ReviewTabs>{children}</ReviewTabs>
 
-            <div className="view">
+            <div
+                className={`view ${activeTab === 1 ? " reviewed-books" : null}`}
+            >
                 {activeTab === 0 && Object.keys(selectedBook).length > 0 && (
                     <ViewBook
                         selectedBook={selectedBook}

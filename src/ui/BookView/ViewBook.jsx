@@ -30,7 +30,11 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
             <div className="view-head">
                 <div className="view-img">
                     <img
-                        src={`https://covers.openlibrary.org/b/id/${selectedBook?.cover}-M.jpg`}
+                        src={`${
+                            selectedBook.cover
+                                ? `https://covers.openlibrary.org/b/id/${selectedBook?.cover}-M.jpg`
+                                : "https://placehold.jp/180x276.png"
+                        }`}
                         alt={selectedBook?.title}
                     />
                 </div>
@@ -58,10 +62,7 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
                             onSetRating={handleUserRating}
                         />
                         {userRating > 0 && (
-                            <Button
-                                nameClass={"btn-primary"}
-                                handleClick={addBookToReviewed}
-                            >
+                            <Button handleClick={addBookToReviewed}>
                                 Add to list
                             </Button>
                         )}
