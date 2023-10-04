@@ -22,7 +22,11 @@ const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
                         <li key={book?.isbn}>
                             <div className="book-cover">
                                 <img
-                                    src={`https://covers.openlibrary.org/b/id/${book?.cover}-S.jpg`}
+                                    src={`${
+                                        book?.cover
+                                            ? `https://covers.openlibrary.org/b/id/${book?.cover}-S.jpg`
+                                            : "https://placehold.jp/37x58.png"
+                                    }`}
                                     alt={book?.title}
                                 />
                             </div>
