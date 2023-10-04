@@ -58,10 +58,7 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
                             onSetRating={handleUserRating}
                         />
                         {userRating > 0 && (
-                            <Button
-                                nameClass={"btn-primary"}
-                                handleClick={addBookToReviewed}
-                            >
+                            <Button handleClick={addBookToReviewed}>
                                 Add to list
                             </Button>
                         )}

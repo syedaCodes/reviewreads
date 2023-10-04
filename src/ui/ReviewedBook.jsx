@@ -1,4 +1,8 @@
+import { useWindowScrollAxis } from "../hooks/useWindowScrollAxis";
+
 const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
+    const scrollAxis = useWindowScrollAxis(booksReviewed);
+
     const enableScroll = {
         overflowY: "scroll",
     };
@@ -8,7 +12,11 @@ const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
             {booksReviewed?.length > 0 ? (
                 <ul
                     className="book-reviews"
-                    style={booksReviewed.length > 4 ? enableScroll : null}
+                    style={
+                        !scrollAxis && booksReviewed.length > 5
+                            ? enableScroll
+                            : null
+                    }
                 >
                     {booksReviewed?.map((book) => (
                         <li key={book?.isbn}>
