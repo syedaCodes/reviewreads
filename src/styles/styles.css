@@ -348,7 +348,8 @@ aside > div::-webkit-scrollbar-thumb,
     margin-bottom: 1rem;
 }
 .book-reviews li .book-cover{
-    width: 5rem;
+    min-width: 5rem;
+    margin-right: 1rem;
 }
 .book-reviews .book-details h5{
     font-size: 1.4rem;

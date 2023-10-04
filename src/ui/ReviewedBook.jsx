@@ -33,8 +33,10 @@ const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
                             <div className="book-details">
                                 <h5>{book?.title}</h5>
                                 <div className="book-meta-details">
-                                    {book.avg_rating && (
+                                    {book.avg_rating ? (
                                         <p>🌟 {book?.avg_rating}</p>
+                                    ) : (
+                                        <p>🌟 N/A</p>
                                     )}
                                     <p>⭐ {book?.rated}</p>
                                     <p>📆 {book?.published}</p>
