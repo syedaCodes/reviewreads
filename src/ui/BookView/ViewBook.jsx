@@ -13,6 +13,7 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
 
         return () => {
             document.title = "Review Reads";
+            setUserRating("");
         };
     }, [selectedBook]);
 
@@ -22,7 +23,9 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
 
     const addBookToReviewed = () => {
         selectedBook.rated = userRating;
-        onAddToList(selectedBook);
+        if (userRating > 0) {
+            onAddToList(selectedBook);
+        }
     };
 
     return (
@@ -68,7 +71,7 @@ const ViewBook = ({ selectedBook, onAddToList }) => {
                         )}
                     </>
                 ) : (
-                    <p>You have rated this book</p>
+                    selectedBook.rated && <p>You have rated this book</p>
                 )}
             </ViewBookFooter>
         </>

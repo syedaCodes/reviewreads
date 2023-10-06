@@ -1,6 +1,6 @@
 import { useWindowScrollAxis } from "../hooks/useWindowScrollAxis";
 
-const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
+const ReviewedBook = ({ booksReviewed, onDeleteBook }) => {
     const scrollAxis = useWindowScrollAxis(booksReviewed);
 
     const enableScroll = {
@@ -45,7 +45,7 @@ const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
                             <div>
                                 <button
                                     className="btn btn-primary"
-                                    onClick={() => onCrossBook(book)}
+                                    onClick={() => onDeleteBook(book)}
                                 >
                                     ❌
                                 </button>
@@ -53,7 +53,9 @@ const ReviewedBook = ({ booksReviewed, onCrossBook }) => {
                         </li>
                     ))}
                 </ul>
-            ) : null}
+            ) : (
+                <p>Rate and add a book, to view them here</p>
+            )}
         </>
     );
 };
