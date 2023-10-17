@@ -120,4 +120,4 @@ On the search page, you can search for books you've read by typing the book titl
 
 ![Reviewed Page](/src/imgs/booksreviewed.png)
 
-The reviewed page displays your list of reviewed books and their ratings.
+The reviewed page displays your list of books with the ratings given.
