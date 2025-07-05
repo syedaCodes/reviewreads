@@ -48,7 +48,7 @@ const Dashboard = ({ isLoading, error, booksData }) => {
 
   return (
     <main>
-      {!isLoading && !error ? (
+      {booksData ? (
         <>
           <Sidebar data={booksData} onSelectBook={handleSelectedBook} />
 
@@ -72,7 +72,7 @@ const Dashboard = ({ isLoading, error, booksData }) => {
           ) : null}
         </>
       ) : (
-        !error && <Loader>Loading...</Loader>
+        isLoading && <Loader>Loading...</Loader>
       )}
       {error && <ErrorMessage message={error} />}
     </main>

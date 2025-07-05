@@ -15,7 +15,7 @@ const Sidebar = ({ data, onSelectBook }) => {
           scrollAxis && data?.length > 3 ? enableXScroll : data.length > 3 ? enableYScroll : null
         }
       >
-        {data.length > 0 ? (
+        {data?.length > 0 ? (
           <ul>
             {data?.map((book) => (
               <SidebarItem key={`${book?.key}`} book={book} onSelectBook={onSelectBook} />
@@ -24,8 +24,6 @@ const Sidebar = ({ data, onSelectBook }) => {
         ) : (
           <p>Search a book you`ve read</p>
         )}
-
-        {!data.length === 0 && <p>No results found. Try another search.</p>}
       </div>
     </aside>
   );

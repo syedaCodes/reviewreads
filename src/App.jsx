@@ -58,12 +58,12 @@ const App = () => {
 
     const query = search.replace(' ', '+');
 
+    setIsLoading(true);
+
     if (!search) {
       setError('Please enter a valid book name');
       return;
     }
-
-    setIsLoading(true);
 
     const res = await getBooks(query);
 
