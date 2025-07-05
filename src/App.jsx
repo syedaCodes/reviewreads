@@ -61,6 +61,7 @@ const App = () => {
     setIsLoading(true);
 
     if (!search) {
+      setIsLoading(false);
       setError('Please enter a valid book name');
       return;
     }

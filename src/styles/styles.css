@@ -143,7 +143,7 @@ aside{
     position: relative;
     background: transparent;
 }
-aside, .view{
+aside, .view, .p-global{
     padding: 2rem;
     border-radius: .2rem;
 }

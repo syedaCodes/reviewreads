@@ -48,9 +48,17 @@ const Dashboard = ({ isLoading, error, booksData }) => {
 
   return (
     <main>
-      {booksData ? (
+      {isLoading ? (
+        <Loader>Loading...</Loader>
+      ) : error ? (
+        <ErrorMessage message={error} />
+      ) : (
         <>
-          <Sidebar data={booksData} onSelectBook={handleSelectedBook} />
+          {booksData?.length > 0 ? (
+            <Sidebar data={booksData} onSelectBook={handleSelectedBook} />
+          ) : (
+            <p className="p-global">Search for a book you have read</p>
+          )}
 
           {Object.keys(bookSelected)?.length > 0 || booksReviewed?.length > 0 ? (
             <ReviewContainer
@@ -71,10 +79,7 @@ const Dashboard = ({ isLoading, error, booksData }) => {
             </ReviewContainer>
           ) : null}
         </>
-      ) : (
-        isLoading && <Loader>Loading...</Loader>
       )}
-      {error && <ErrorMessage message={error} />}
     </main>
   );
 };
