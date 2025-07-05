@@ -15,6 +15,7 @@ export async function getBooks(query) {
     if (!docs.length || !docs.length > 0) throw 'Book not found';
 
     response.docs = docs;
+    console.log(docs);
   } catch (err) {
     if (typeof err === 'object') {
       response.error = err.message;
