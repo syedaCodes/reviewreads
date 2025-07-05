@@ -58,23 +58,24 @@ const App = () => {
 
     const query = search.replace(' ', '+');
 
-    if (search) {
-      setIsLoading(true);
-    } else {
+    if (!search) {
       setError('Please enter a valid book name');
       return;
     }
+
+    setIsLoading(true);
 
     const res = await getBooks(query);
 
     if (!res.docs || res.error) {
       setError(res.error);
+      setIsLoading(false);
+      return;
     }
 
-    if (res.docs.length > 0) {
-      const sortedData = getDataSorted(res.docs);
-      setBooksData((booksData) => [...booksData, ...sortedData]);
-    }
+    const sortedData = getDataSorted(res.docs);
+    setBooksData((booksData) => [...booksData, ...sortedData]);
+
     setIsLoading(false);
   };
 
