@@ -24,6 +24,8 @@ const Sidebar = ({ data, onSelectBook }) => {
         ) : (
           <p>Search a book you`ve read</p>
         )}
+
+        {!data.length === 0 && <p>No results found. Try another search.</p>}
       </div>
     </aside>
   );
